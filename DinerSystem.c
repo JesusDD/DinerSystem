@@ -1,31 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#define NP 100
+#define NP 50
 #define LONGCAD 30
 #define M 200
 void leer(int*);
-void menuPrincipal(char pla[NP][LONGCAD],int pre[NP], int dis[NP], int ped[M][3]);
+void menuPrincipal(char pla[NP][LONGCAD],int pre[NP], int dis[NP], int ped[M][3], int num[2]);
 void encargado(char pla[NP][LONGCAD],int pre[NP], int dis[NP], int ped[M][3]);
-void cliente(char pla[NP][LONGCAD],int pre[NP], int dis[NP], int pedidos[M][3]);
+void cliente(char pla[NP][LONGCAD],int pre[NP], int dis[NP], int pedidos[M][3],int num[2]);
 void tecnico();
 void imprimirCadenas(char[][LONGCAD]);
 void administrar(int,char pla[NP][LONGCAD],int pre[NP], int dis[NP]);
 void verPedidos(char pla[NP][LONGCAD],int pre[NP],int ped[M][3]);
+void ordenar(int ped[][3], int num[2],int dis[NP]);
 void imprimirCodigo();
-void inicializarChar(char a[][LONGCAD]);
 void inicializarInt(int a[NP]);
 void llenar(int a[][3]);
+void fechaHora();
 int main() {
-	char platillos[NP][LONGCAD];
+	char platillos[NP][LONGCAD]={' '};
 	int precio[NP];
 	int disponibilidad[NP];
 	int pedidos[M][3];
-	inicializarChar(platillos);
+	int numeracion[2];
 	inicializarInt(precio);
 	inicializarInt(disponibilidad);
 	llenar(pedidos);
-	menuPrincipal(platillos,precio,disponibilidad,pedidos);
+	inicializarInt(numeracion);
+	menuPrincipal(platillos,precio,disponibilidad,pedidos,numeracion);
 	
 	return 0;
 }
@@ -46,14 +48,6 @@ void inicializarInt(int a[NP]){
 	}
 }
 
-void inicializarChar(char a[][LONGCAD]){
-	int i=0, j=0;
-	for(i=0;i<NP;i++){
-		for(j=0;j<1;j++){
-			a[i][j]='-';
-		}
-	}
-}
 
 void imprimirCadenas(char cadena[][LONGCAD]){
 	int i;
@@ -63,9 +57,9 @@ void imprimirCadenas(char cadena[][LONGCAD]){
 	}
 }
 
-void menuPrincipal(char pla[NP][LONGCAD],int pre[NP], int dis[NP], int ped[NP][3]){
-	int opcion;
-	while(opcion!=4){
+void menuPrincipal(char pla[][LONGCAD],int pre[NP], int dis[NP], int ped[][3], int num[2]){
+	int opcion int contrasenia,flag=1;
+	while(flag){
 		printf("\n");
 		printf("Bienvenido a DynerSystem \n Escoja entre las 4 opciones \n 1)Encargado \n 2)Cliente \n 3)Tecnico \n 4)Salir \n");
 		leer(&opcion);
@@ -74,13 +68,32 @@ void menuPrincipal(char pla[NP][LONGCAD],int pre[NP], int dis[NP], int ped[NP][3
 			leer(&opcion);
 		}
 		if(opcion==1){
+			system("cls");
 			encargado(pla,pre,dis,ped);
+			system("pause");
+			system("cls");
 		}else{
 			if(opcion==2){
-				cliente(pla,pre,dis,ped);
+				system("cls");
+				cliente(pla,pre,dis,ped,num);
+				system("pause");
+				system("cls");
 			}else{
 				if(opcion==3){
+					system("cls");
 					tecnico();
+					system("pause");
+					system("cls");
+				}else{
+					if(opcion==4){
+						printf("ingrese alguna de las contraseñas para finalizar el programa");
+						leer(&contrasenia);
+						if(contrasenia==270418 || contrasenia==280499){
+							flag=0;
+						}else{
+							printf("la contraseña es incorrecta");
+						}
+					}
 				}
 			}
 		}
@@ -91,7 +104,7 @@ void leer(int* variable){
 	scanf("%i", variable);
 }
 
-void encargado(char pla[NP][LONGCAD],int pre[NP], int dis[NP], int ped[M][3]){
+void encargado(char pla[][LONGCAD],int pre[NP], int dis[NP], int ped[][3]){
 	int contrasenia, opcion, platillo, desicion;
 	printf("\n ingrese la contraseña del encargado \n");
 	leer(&contrasenia);
@@ -106,6 +119,10 @@ void encargado(char pla[NP][LONGCAD],int pre[NP], int dis[NP], int ped[M][3]){
 			while(desicion!=2){
 				printf("Que platillo desea administrar \n");
 				leer(&platillo);
+				while(platillo==0){
+					printf("No existe este platillo");
+					leer(&platillo);
+				}
 				administrar(platillo,pla,pre,dis);
 				printf("¿desea seguir administrando? \n 1)si \n 2)no \n");
 				leer(&desicion);
@@ -119,7 +136,7 @@ void encargado(char pla[NP][LONGCAD],int pre[NP], int dis[NP], int ped[M][3]){
 		printf("La contraseña es incorrecta");
 	}
 }
-void administrar(int i,char pla[NP][LONGCAD],int pre[NP], int dis[NP]){
+void administrar(int i,char pla[][LONGCAD],int pre[NP], int dis[NP]){
 	printf("ingrese el nombre del platillo \n");
 	scanf(" %[^\n]", pla[i]);
 	printf("ingrese el precio del platillo (en pesos) \n");
@@ -128,30 +145,30 @@ void administrar(int i,char pla[NP][LONGCAD],int pre[NP], int dis[NP]){
 	scanf("%i", &dis[i]);
 }
 
-void verPedidos(char pla[NP][LONGCAD],int pre[NP],int ped[M][3]){
-	int i=0,platillo=0,raciones=0;
-	for(i=0;i<M;i++){
-		platillo=ped[i][1];
-		raciones=ped[i][2];
-		printf("Pedido: # %i ",i);
+void verPedidos(char pla[][LONGCAD],int pre[NP],int ped[][3]){
+	int i=0,platillo=0,raciones=0,precio=0;
+	for(i=1;i<M;i++){
+		platillo=ped[i][0];
+		raciones=ped[i][1];
+		printf("Pedido: #%i ",i);
 		printf("platillo: %s ", pla[platillo]);
-		printf("$ %i ",pre[platillo]);
-		printf("raciones: %i",raciones);
+		precio=pre[platillo]*raciones;
+		printf("$ %i ",precio);
+		printf("raciones: %i ",raciones);
 		printf("para llevar: ");
-		if(ped[i][3]==1){
+		if(ped[i][2]==1){
 			printf("si");
 		}else{
 			printf("no");
 		}
 		printf("\n");
 	}
-	system("pause");
 }
 
-void cliente(char pla[NP][LONGCAD],int pre[NP], int dis[NP], int pedidos[M][3]){
-	int i=0;
+void cliente(char pla[][LONGCAD],int pre[NP], int dis[NP], int ped[][3], int num[2]){
+	int i=0, opcion=0;
 	printf("Bienvenido al menu de la cafeteria \n");
-	for(i=0;i<NP;i++){
+	for(i=1;i<NP;i++){
 		printf("Platillo %i)",i);
 		printf(" %s ",pla[i]);
 		printf(" %i ",pre[i]);
@@ -162,9 +179,59 @@ void cliente(char pla[NP][LONGCAD],int pre[NP], int dis[NP], int pedidos[M][3]){
 		}
 		printf("\n");
 	}
-	printf("Que desea ordenar \n");
-	
+	ordenar(ped,num,dis);
+	printf("¿Desea seguir oredenando? 1)si  2)no \n");
+	leer(&opcion);
+	while(opcion<1 || opcion>2){
+		printf("Error, escoja unicamente entre las dos opciones \n");
+		leer(&opcion);
+	}
+	if(opcion==1){
+		ordenar(ped,num,dis);
+	}
 }
+
+void ordenar(int ped[][3], int num[2],int dis[NP]){
+	int i=0, opcion=2, platillo=0;
+	num[0]=num[0]+1;
+	i=num[0];
+	while(opcion==2){
+		printf("¿Que platillo desea ordenar? \n");
+		leer(&ped[i][0]);
+		platillo=ped[i][0];
+		while(dis[platillo]==2){
+			printf("El platillo no esta disponible, por favor escoja otro \n");
+			leer(&ped[i][0]);
+			platillo=ped[i][0];
+		}
+		printf("¿Cuantas raciones quiere del platillo? \n");
+		leer(&ped[i][1]);
+		printf("¿Lo quiere para llevar? 1)si  2)no \n");
+		leer(&ped[i][2]);
+		while(ped[i][2]<1 || ped[i][2]>2){
+			printf("Error, escoja unicamente entre las dos opciones \n");
+			leer(&ped[i][2]);
+		}
+		printf("¿Esta seguro de su pedido? 1)si  2)no \n");
+		leer(&opcion);
+		while(opcion<1 || opcion>2){
+			printf("Error, escoja unicamente entre las dos opciones \n");
+			leer(&opcion);
+		}
+    }
+	printf("Su orden es la: #%i \n",i);
+	fechaHora();
+}
+
+void fechaHora(){
+	time_t tiempo = time(0);
+	struct tm *tlocal = localtime(&tiempo);
+	char output[128];
+	strftime(output,128,"%d/%m/%Y %H:%M:%S",tlocal);
+	printf("%s\n",output);
+}	
+
+	
 
 void tecnico(){
 	int contrasenia;
@@ -173,7 +240,6 @@ void tecnico(){
 	if(contrasenia==280499){
 		printf("\n El codigo es: \n");
 		imprimirCodigo();
-		system("pause");
 	}else{
 		printf("La contraseña es incorrecta \n");
 	}
