@@ -28,10 +28,15 @@ int main() {
 	llenar(pedidos);
 	inicializarInt(numeracion);
 	menuPrincipal(platillos,precio,disponibilidad,pedidos,numeracion);
-	
+
 	return 0;
 }
 
+/**
+* @brief recibe una matriz y la llena de "0"
+* @param a es la matriz a llenar
+* @return
+*/
 void llenar(int a[][3]){
 	int i=0, j=0;
 	for(i=0;i<M;i++){
@@ -41,14 +46,22 @@ void llenar(int a[][3]){
 	}
 }
 
+/**
+* @brief recibe un vector y lo llena de "0"
+* @param a es el vector a llenar
+* @return
+*/
 void inicializarInt(int a[NP]){
 	int i=0;
 	for(i=0;i<NP;i++){
 		a[i]=0;
 	}
 }
-
-
+/**
+* @brief recibe una matriz de caracteres y la imprime
+* @param a es la matriz a imprimir
+* @return
+*/
 void imprimirCadenas(char cadena[][LONGCAD]){
 	int i;
 	for(i=0; i<NP; i++){
@@ -56,7 +69,15 @@ void imprimirCadenas(char cadena[][LONGCAD]){
 		printf(" \n");
 	}
 }
-
+/**
+* @brief imprime y administra el menu de inicio
+* @param pla
+* @param pre
+* @param dis
+* @param ped
+* @param num
+* @return
+*/
 void menuPrincipal(char pla[][LONGCAD],int pre[NP], int dis[NP], int ped[][3], int num[2]){
 	int opcion int contrasenia,flag=1;
 	while(flag){
@@ -86,12 +107,12 @@ void menuPrincipal(char pla[][LONGCAD],int pre[NP], int dis[NP], int ped[][3], i
 					system("cls");
 				}else{
 					if(opcion==4){
-						printf("ingrese alguna de las contraseñas para finalizar el programa");
+						printf("ingrese alguna de las contraseï¿½as para finalizar el programa");
 						leer(&contrasenia);
 						if(contrasenia==270418 || contrasenia==280499){
 							flag=0;
 						}else{
-							printf("la contraseña es incorrecta");
+							printf("la contraseï¿½a es incorrecta");
 						}
 					}
 				}
@@ -103,13 +124,20 @@ void menuPrincipal(char pla[][LONGCAD],int pre[NP], int dis[NP], int ped[][3], i
 void leer(int* variable){
 	scanf("%i", variable);
 }
-
+/**
+* @brief imprime y administra el menu del  usuario "encargado"
+* @param pla
+* @param pre
+* @param dis
+* @param ped
+* @return
+*/
 void encargado(char pla[][LONGCAD],int pre[NP], int dis[NP], int ped[][3]){
 	int contrasenia, opcion, platillo, desicion;
-	printf("\n ingrese la contraseña del encargado \n");
+	printf("\n ingrese la contraseï¿½a del encargado \n");
 	leer(&contrasenia);
 	if(contrasenia==270418){
-		printf("\n ¿Que accion desea realizar \n 1)administrar platillos \n 2)acceder a los pedidos \n");
+		printf("\n ï¿½Que accion desea realizar \n 1)administrar platillos \n 2)acceder a los pedidos \n");
 		leer(&opcion);
 		while(opcion<1 || opcion>2){
 			printf("por favor indique alguna de las opciones en pantalla, vuelva a intentarlo \n");
@@ -124,7 +152,7 @@ void encargado(char pla[][LONGCAD],int pre[NP], int dis[NP], int ped[][3]){
 					leer(&platillo);
 				}
 				administrar(platillo,pla,pre,dis);
-				printf("¿desea seguir administrando? \n 1)si \n 2)no \n");
+				printf("ï¿½desea seguir administrando? \n 1)si \n 2)no \n");
 				leer(&desicion);
 			}
 		}else{
@@ -133,9 +161,17 @@ void encargado(char pla[][LONGCAD],int pre[NP], int dis[NP], int ped[][3]){
 			}
 		}
 	}else{
-		printf("La contraseña es incorrecta");
+		printf("La contraseï¿½a es incorrecta");
 	}
 }
+/**
+* @brief recibe una matriz de caracteres y dos vectores de enteros y lee el nombre de los platillos, el precio y u diponibilidad
+* @param i
+* @param pla
+* @param pre
+* @param dis
+* @return
+*/
 void administrar(int i,char pla[][LONGCAD],int pre[NP], int dis[NP]){
 	printf("ingrese el nombre del platillo \n");
 	scanf(" %[^\n]", pla[i]);
@@ -144,7 +180,13 @@ void administrar(int i,char pla[][LONGCAD],int pre[NP], int dis[NP]){
 	printf("ingrese la disponibilidad del platillo \n 1)disponible \n 2)no disponible \n");
 	scanf("%i", &dis[i]);
 }
-
+/**
+* @brief recibe una matriz de caracteres, una matriz y un vector de enteros y los imprime
+* @param pla
+* @param pre
+* @param ped
+* @return
+*/
 void verPedidos(char pla[][LONGCAD],int pre[NP],int ped[][3]){
 	int i=0,platillo=0,raciones=0,precio=0;
 	for(i=1;i<M;i++){
@@ -164,7 +206,15 @@ void verPedidos(char pla[][LONGCAD],int pre[NP],int ped[][3]){
 		printf("\n");
 	}
 }
-
+/**
+* @brief recibe una matriz de caracteres y la imprime, y recibe una matriz y dos vectores de enteros,
+* @param pla
+* @param pre
+* @param dis
+* @param ped
+* @param num
+* @return
+*/
 void cliente(char pla[][LONGCAD],int pre[NP], int dis[NP], int ped[][3], int num[2]){
 	int i=0, opcion=0;
 	printf("Bienvenido al menu de la cafeteria \n");
@@ -180,7 +230,7 @@ void cliente(char pla[][LONGCAD],int pre[NP], int dis[NP], int ped[][3], int num
 		printf("\n");
 	}
 	ordenar(ped,num,dis);
-	printf("¿Desea seguir oredenando? 1)si  2)no \n");
+	printf("ï¿½Desea seguir oredenando? 1)si  2)no \n");
 	leer(&opcion);
 	while(opcion<1 || opcion>2){
 		printf("Error, escoja unicamente entre las dos opciones \n");
@@ -190,13 +240,19 @@ void cliente(char pla[][LONGCAD],int pre[NP], int dis[NP], int ped[][3], int num
 		ordenar(ped,num,dis);
 	}
 }
-
+/**
+* @brief recibe una matriz y dos vectores de enteros, y lee el pedido del cliente usando numeros
+* @param ped
+* @param num
+* @param dis
+* @return
+*/
 void ordenar(int ped[][3], int num[2],int dis[NP]){
 	int i=0, opcion=2, platillo=0;
 	num[0]=num[0]+1;
 	i=num[0];
 	while(opcion==2){
-		printf("¿Que platillo desea ordenar? \n");
+		printf("ï¿½Que platillo desea ordenar? \n");
 		leer(&ped[i][0]);
 		platillo=ped[i][0];
 		while(dis[platillo]==2){
@@ -204,15 +260,15 @@ void ordenar(int ped[][3], int num[2],int dis[NP]){
 			leer(&ped[i][0]);
 			platillo=ped[i][0];
 		}
-		printf("¿Cuantas raciones quiere del platillo? \n");
+		printf("ï¿½Cuantas raciones quiere del platillo? \n");
 		leer(&ped[i][1]);
-		printf("¿Lo quiere para llevar? 1)si  2)no \n");
+		printf("ï¿½Lo quiere para llevar? 1)si  2)no \n");
 		leer(&ped[i][2]);
 		while(ped[i][2]<1 || ped[i][2]>2){
 			printf("Error, escoja unicamente entre las dos opciones \n");
 			leer(&ped[i][2]);
 		}
-		printf("¿Esta seguro de su pedido? 1)si  2)no \n");
+		printf("ï¿½Esta seguro de su pedido? 1)si  2)no \n");
 		leer(&opcion);
 		while(opcion<1 || opcion>2){
 			printf("Error, escoja unicamente entre las dos opciones \n");
@@ -222,29 +278,39 @@ void ordenar(int ped[][3], int num[2],int dis[NP]){
 	printf("Su orden es la: #%i \n",i);
 	fechaHora();
 }
-
+/**
+* @brief lee e imprime la fecha y hora del sistema
+* @param a es la matriz a imprimir
+* @return
+*/
 void fechaHora(){
 	time_t tiempo = time(0);
 	struct tm *tlocal = localtime(&tiempo);
 	char output[128];
 	strftime(output,128,"%d/%m/%Y %H:%M:%S",tlocal);
 	printf("%s\n",output);
-}	
-
-	
-
+}
+/**
+* @brief lee una contraseÃ±a y si coincide llama a la funcion imprimirCodigo
+* @param
+* @return
+*/
 void tecnico(){
 	int contrasenia;
-	printf("ingrese la contraseña del tecnico \n");
+	printf("ingrese la contraseï¿½a del tecnico \n");
 	leer(&contrasenia);
 	if(contrasenia==280499){
 		printf("\n El codigo es: \n");
 		imprimirCodigo();
 	}else{
-		printf("La contraseña es incorrecta \n");
+		printf("La contraseï¿½a es incorrecta \n");
 	}
 }
-
+/**
+* @brief imprime el codigo del programa
+* @param
+* @return
+*/
 void imprimirCodigo(){
 	FILE *fp= fopen ( "DinerSystem.c", "rb" );
 	if(fp==NULL){
@@ -258,3 +324,4 @@ void imprimirCodigo(){
 	fclose ( fp );
 	printf("\n\n se ha leido correctamente \n");
 }
+
