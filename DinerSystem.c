@@ -1,7 +1,6 @@
 #include <stdio.h>
 /**
 Comentario:
-
 * se utilizo la biblioteca stdlib.h para que se puedan realizar las funciones como
 * imprimirCodigo, y para llenar una matriz char con ' '.
 * Y se utilizo la biblioteca time.h para poder realizar la funcion de fechaHora
@@ -12,8 +11,8 @@ Comentario:
 * @def NP : numero de platillos
 * @def LONGCAD : logitud de las palabras
 * @def NPED : numero de pedidos
-* @def PASSWORD1 : contraseña del encargado
-* @def PASSWORD2 : contraseña del tecnico
+* @def PASSWORD1 : contraseÃ±a del encargado
+* @def PASSWORD2 : contraseÃ±a del tecnico
 */
 #define NP 50
 #define LONGCAD 15
@@ -124,12 +123,12 @@ void verMenuPrincipal(struct Pedido ped[],struct Platillo pla[], int num[]){
 					system("cls");
 				}else{
 					if(opcion==4){
-						printf("ingrese alguna de las contraseñas para finalizar el programa");
+						printf("ingrese alguna de las contraseÃ±as para finalizar el programa");
 						leer(&contrasenia);
 						if(contrasenia==PASSWORD1 || contrasenia==PASSWORD2){
 							flag=0;
 						}else{
-							printf("la contraseña es incorrecta");
+							printf("la contraseÃ±a es incorrecta");
 						}
 					}
 				}
@@ -151,10 +150,10 @@ void leer(int* variable){
 */
 void verMenuEncargado(struct Pedido ped[],struct Platillo pla[]){
 	int contrasenia, opcion, plato, desicion;
-	printf("\n ingrese la contraseña del encargado \n");
+	printf("\n ingrese la contraseÃ±a del encargado \n");
 	leer(&contrasenia);
 	if(contrasenia==PASSWORD1){
-		printf("\n ¿Que accion desea realizar? \n 1)administrar platillos \n 2)acceder a los pedidos \n");
+		printf("\n Â¿Que accion desea realizar? \n 1)administrar platillos \n 2)acceder a los pedidos \n");
 		leer(&opcion);
 		while(opcion<1 || opcion>2){
 			printf("por favor indique alguna de las opciones en pantalla, vuelva a intentarlo \n");
@@ -178,7 +177,7 @@ void verMenuEncargado(struct Pedido ped[],struct Platillo pla[]){
 			}
 		}
 	}else{
-		printf("La contraseña es incorrecta");
+		printf("La contraseÃ±a es incorrecta");
 	}
 }
 /**
@@ -239,7 +238,7 @@ void verMenuCliente(struct Platillo pla[],struct Pedido ped[],int num[]){
 		printf("\n");
 	}
 	ordenar(ped,pla,num);
-	printf("¿Desea seguir oredenando? 1)si  2)no \n");
+	printf("Â¿Desea seguir oredenando? 1)si  2)no \n");
 	leer(&opcion);
 	while(opcion<1 || opcion>2){
 		printf("Error, escoja unicamente entre las dos opciones \n");
@@ -251,14 +250,16 @@ void verMenuCliente(struct Platillo pla[],struct Pedido ped[],int num[]){
 }
 /**
 * @brief recibe un vector de estructura Platillo, y lee el pedido del cliente usando numeros
-* @param ped : vector de estructura Platillo
+* @param ped : vector de estructura Pedido
+* @param pla : vector de estructura Platillo
+* @param num : vector el numero de pedido actual
 */
 void ordenar(struct Pedido ped[],struct Platillo pla[], int num[]){
 	int i=0, opcion=2, platillo=0;
 	num[0]=num[0]+1;
 	i=num[0];
 	while(opcion==2){
-		printf("¿Que platillo desea ordenar? \n");
+		printf("Â¿Que platillo desea ordenar? \n");
 		leer(&ped[i].platillo);
 		platillo=ped[i].platillo;
 		while(pla[platillo].disponibilidad==2){
@@ -266,15 +267,15 @@ void ordenar(struct Pedido ped[],struct Platillo pla[], int num[]){
 			leer(&ped[i].platillo);
 			platillo=ped[i].platillo;
 		}
-		printf("¿Cuantas raciones quiere del platillo? \n");
+		printf("Â¿Cuantas raciones quiere del platillo? \n");
 		leer(&ped[i].raciones);
-		printf("¿Lo quiere para llevar? 1)si  2)no \n");
+		printf("Â¿Lo quiere para llevar? 1)si  2)no \n");
 		leer(&ped[i].paraLlevar);
 		while(ped[i].paraLlevar<1 || ped[i].paraLlevar>2){
 			printf("Error, escoja unicamente entre las dos opciones \n");
 			leer(&ped[i].paraLlevar);
 		}
-		printf("¿Esta seguro de su pedido? 1)si  2)no \n");
+		printf("Â¿Esta seguro de su pedido? 1)si  2)no \n");
 		leer(&opcion);
 		while(opcion<1 || opcion>2){
 			printf("Error, escoja unicamente entre las dos opciones \n");
@@ -286,7 +287,7 @@ void ordenar(struct Pedido ped[],struct Platillo pla[], int num[]){
 }
 /**
 * @brief lee e imprime la fecha y hora del sistema
-* @param a : es la matriz a imprimir
+* @param 
 * @return
 */
 void verFechaHora(){
@@ -297,24 +298,24 @@ void verFechaHora(){
 	printf("%s\n",output);
 }
 /**
-* @brief lee una contraseña y si coincide llama a la funcion imprimirCodigo
-* @param contrasenia: es una variable con el fin de tener el valor del PASSWORD2
+* @brief lee una contraseÃ±a y si coincide llama a la funcion imprimirCodigo
+* @param 
 * @return
 */
 void verMenuTecnico(){
 	int contrasenia;
-	printf("ingrese la contraseña del tecnico \n");
+	printf("ingrese la contraseÃ±a del tecnico \n");
 	leer(&contrasenia);
 	if(contrasenia==PASSWORD2){
 		printf("\n El codigo es: \n");
 		imprimirCodigo();
 	}else{
-		printf("La contraseña es incorrecta \n");
+		printf("La contraseÃ±a es incorrecta \n");
 	}
 }
 /**
 * @brief imprime el codigo del programa
-* @param *fp
+* @param 
 */
 void imprimirCodigo(){
 	FILE *fp= fopen ( "DinerSystem.c", "rb" );
@@ -329,4 +330,3 @@ void imprimirCodigo(){
 	fclose ( fp );
 	printf("\n\n se ha leido correctamente \n");
 }
-
