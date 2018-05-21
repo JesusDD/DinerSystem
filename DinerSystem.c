@@ -20,6 +20,11 @@ Comentario:
 #define NPED 200
 #define PASSWORD1 270418
 #define PASSWORD2 280499
+
+/**
+* @struct Pedido : estructura para los pedidos de los cientes
+* @struct Platillo : estructura para los platillos
+*/
 struct Pedido{
 	int platillo, precio, raciones, paraLlevar;
 };
@@ -28,6 +33,7 @@ struct Platillo{
 	char nombre[LONGCAD];
 	int precio,disponibilidad;
 };
+
 void verMenuPrincipal(struct Pedido ped[],struct Platillo pla[], int num[]);
 void verMenuEncargado(struct Pedido ped[],struct Platillo pla[]);
 void verMenuCliente(struct Platillo pla[],struct Pedido ped[],int num[]);
@@ -52,9 +58,8 @@ int main() {
 }
 
 /**
-* @brief recibe una matriz y la llena de "0"
-* @param a :es la matriz a llenar
-* @return
+* @brief recibe un vector de estructura platillo y la inicializa
+* @param pla : es el vector de estructura platillo
 */
 void inicializarPlatillos(struct Platillo pla[]){
 	int i=0,j=0;
@@ -71,9 +76,8 @@ void inicializarPlatillos(struct Platillo pla[]){
 }
 
 /**
-* @brief recibe un vector y lo llena de "0"
-* @param a :es el vector a llenar
-* @return
+* @brief recibe un vector de estructura Pedido y lo inicializa
+* @param ped :es el vector de estrutura Pedido
 */
 void inicializarPedidos(struct Pedido ped[]){
 	int i=0;
@@ -87,12 +91,9 @@ void inicializarPedidos(struct Pedido ped[]){
 
 /**
 * @brief imprime y administra el menu de inicio
-* @param pla : matriz de los nombres de los platillos
-* @param pre : vector del precio de los platillos
-* @param dis : vector de la disponiblididad de los platillos ( 1-si, 2-no)
-* @param ped : matriz de los pedidos del cliente
+* @param pla : vector de estrutura Platillo 
+* @param ped : vector de estructura Pedido
 * @param num : vector del numero del pedido
-* @return
 */
 void verMenuPrincipal(struct Pedido ped[],struct Platillo pla[], int num[]){
 	int opcion, contrasenia, flag=1;
@@ -145,11 +146,8 @@ void leer(int* variable){
 }
 /**
 * @brief imprime y administra el menu del  usuario "encargado"
-* @param pla : matriz de los platillos
-* @param pre : vector de los precios
-* @param dis : vector de la disponibilidad (1-si, 2-no)
-* @param ped : matriz de los pedidos
-* @return
+* @param pla : vector de estructura Platillo
+* @param ped : vector de estructura Pedido
 */
 void verMenuEncargado(struct Pedido ped[],struct Platillo pla[]){
 	int contrasenia, opcion, plato, desicion;
@@ -184,12 +182,9 @@ void verMenuEncargado(struct Pedido ped[],struct Platillo pla[]){
 	}
 }
 /**
-* @brief recibe una matriz de caracteres y dos vectores de enteros y lee el nombre de los platillos, el precio y u diponibilidad
+* @brief recibe el numero del platillo y el vector de estrucura Platillo para administrar los platillos
 * @param i : el numero del platillo
-* @param pla : matriz de los platillos
-* @param pre : vector de los precios
-* @param dis : vector de la disponibilidad (1-si, 2-no)
-* @return
+* @param pla : vector de estructura Platillo
 */
 void administrar(int i,struct Platillo pla[]){
 	printf("ingrese el nombre del platillo \n");
@@ -201,10 +196,8 @@ void administrar(int i,struct Platillo pla[]){
 }
 /**
 * @brief recibe una matriz de caracteres, una matriz y un vector de enteros y los imprime
-* @param pla : matriz de los platillos
-* @param pre : vector de los precios
-* @param ped : matriz de los pedidos
-* @return
+* @param pla : vector de estructura Platillo
+* @param ped : vector de estructura Pedido
 */
 void verPedidos(struct Platillo pla[],struct Pedido ped[]){
 	int i=0,platillo=0,raciones=0,precio=0;
@@ -226,13 +219,10 @@ void verPedidos(struct Platillo pla[],struct Pedido ped[]){
 	}
 }
 /**
-* @brief recibe una matriz de caracteres y la imprime, y recibe una matriz y dos vectores de enteros,
-* @param pla : matriz de los platillos
-* @param pre : vector de los precios
-* @param dis : vector de la disponibilidad (1-si, 2-no)
-* @param ped : matriz de los pedidos
+* @brief recibe un vector de estructura Platillo, vector de estructura Pedido y el vector del numero de pedidos
+* @param pla : vector de estructura Platillo
+* @param ped : vector de estructura Pedido
 * @param num : vector del numero del pedidos
-* @return
 */
 void verMenuCliente(struct Platillo pla[],struct Pedido ped[],int num[]){
 	int i=0, opcion=0;
@@ -260,11 +250,8 @@ void verMenuCliente(struct Platillo pla[],struct Pedido ped[],int num[]){
 	}
 }
 /**
-* @brief recibe una matriz y dos vectores de enteros, y lee el pedido del cliente usando numeros
-* @param ped : es la matriz de los pedidos
-* @param num : es el vector del numero del pedido
-* @param dis : es el vector de la disponibilidad de pedido (1-si, 2-no)
-* @return
+* @brief recibe un vector de estructura Platillo, y lee el pedido del cliente usando numeros
+* @param ped : vector de estructura Platillo
 */
 void ordenar(struct Pedido ped[],struct Platillo pla[], int num[]){
 	int i=0, opcion=2, platillo=0;
@@ -328,7 +315,6 @@ void verMenuTecnico(){
 /**
 * @brief imprime el codigo del programa
 * @param *fp
-* @return
 */
 void imprimirCodigo(){
 	FILE *fp= fopen ( "DinerSystem.c", "rb" );
