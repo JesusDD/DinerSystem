@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML><HEAD></HEAD><BODY>
+<OBJECT type="text/site properties">
+<param name="FrameName" value="right">
+</OBJECT>
+<UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="struct_platillo.html#ae593c9b98c820b4d166d98d7f9523b56"><param name="Name" value="disponibilidad"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="struct_platillo.html#a20b3fab702f4065a22eeb5d12c5ffddf"><param name="Name" value="nombre"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="struct_pedido.html#af42820665c52088233e1af1c1663ced2"><param name="Name" value="paraLlevar"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="struct_pedido.html"><param name="Name" value="Pedido"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="struct_pedido.html#af42820665c52088233e1af1c1663ced2"><param name="Name" value="paraLlevar"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="struct_pedido.html#a03e7bc91ea56dfd733416e4c7468705d"><param name="Name" value="platillo"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="struct_pedido.html#a042a8e0f276deeec33704be78aa54d6c"><param name="Name" value="precio"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="struct_pedido.html#a50fd06e050ee7005d19ae2aa8aa73eb6"><param name="Name" value="raciones"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="struct_platillo.html"><param name="Name" value="Platillo"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="struct_platillo.html#ae593c9b98c820b4d166d98d7f9523b56"><param name="Name" value="disponibilidad"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="struct_platillo.html#a20b3fab702f4065a22eeb5d12c5ffddf"><param name="Name" value="nombre"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="struct_pedido.html#a03e7bc91ea56dfd733416e4c7468705d"><param name="Name" value="platillo"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="struct_platillo.html#a83b1b5ae3079212f1f55b00acd2718fd"><param name="Name" value="Platillo"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="struct_pedido.html#a042a8e0f276deeec33704be78aa54d6c"><param name="Name" value="precio"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="struct_pedido.html#a042a8e0f276deeec33704be78aa54d6c"><param name="Name" value="Pedido"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="struct_platillo.html#a83b1b5ae3079212f1f55b00acd2718fd"><param name="Name" value="Platillo"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="struct_pedido.html#a50fd06e050ee7005d19ae2aa8aa73eb6"><param name="Name" value="raciones"></OBJECT>
+</UL>
+</BODY>
+</HTML>
